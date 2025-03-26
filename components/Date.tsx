@@ -88,8 +88,9 @@ export const Date = ({ date, onDateChange }: DateProps) => {
             mode="date"
             display="default"
             onChange={(event: DateTimePickerEvent, selectedDate?: Date) => {
+                setShow(false);
                 if (selectedDate) {
-                    setNewDate(selectedDate);
+                    onDateChange(selectedDate);
                 }
             }}
           />
