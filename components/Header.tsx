@@ -1,19 +1,24 @@
 import { Header as RNEHeader } from '@rneui/themed';
 import { StyleSheet, Dimensions, Platform } from 'react-native';
+import { Date } from './Date';
 
 const { width } = Dimensions.get('window');
 
-export const Header = () => {
+interface HeaderProps {
+  date: Date;
+  onDateChange: (date: Date) => void;
+}
+
+export const Header = ({ date, onDateChange }: HeaderProps) => {
   return (
     <RNEHeader
       leftComponent={{
         text: 'NEO Tracker',
         style: styles.headerTitle
       }}
-      rightComponent={{
-        text: 'Date', // Placeholder for date selector
-        style: styles.dateText
-      }}
+      rightComponent={
+        <Date date={date} onDateChange={onDateChange} />
+      }
       containerStyle={styles.header}
       backgroundColor="transparent"
       barStyle="light-content"
@@ -43,12 +48,5 @@ const styles = StyleSheet.create({
       : Math.min(width * 0.055, 22),
     fontWeight: Platform.OS === 'ios' ? 'bold' : '700',
     textAlign: 'left',
-  },
-  dateText: {
-    color: '#fff',
-    fontSize: Platform.OS === 'ios'
-      ? Math.min(width * 0.045, 18)
-      : Math.min(width * 0.04, 16),
-    textAlign: 'right',
   },
 });
