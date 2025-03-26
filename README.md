@@ -11,6 +11,7 @@ React Native application for monitoring NEOs (Near-Earth Objects) based on date 
 npx expo login
 ```
 - Computer and mobile device are on the same network
+- NASA API key stored locally in .env.local
 
 ## Installation
 
