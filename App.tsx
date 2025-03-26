@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ImageBackground, SafeAreaView, Platform } from 'react-native';
 import { Header } from './components/Header';
+import { useState } from 'react';
 
 const backgroundImage = require('./assets/images/background.jpg');
 
 export default function App() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -12,9 +15,11 @@ export default function App() {
           source={backgroundImage}
           style={styles.backgroundImage}
         >
-          <Header />
+          <Header 
+            date={selectedDate} 
+            onDateChange={setSelectedDate}
+          />
           <View style={styles.content}>
-            
             <StatusBar style="light" />
           </View>
         </ImageBackground>
