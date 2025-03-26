@@ -2,13 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ImageBackground, SafeAreaView, Platform } from 'react-native';
 import { Header } from './components/Header';
 import { useState } from 'react';
-
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 const backgroundImage = require('./assets/images/background.jpg');
 
 export default function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
+    <SafeAreaProvider>
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <ImageBackground 
@@ -25,6 +26,7 @@ export default function App() {
         </ImageBackground>
       </View>
     </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
