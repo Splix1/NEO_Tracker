@@ -47,27 +47,38 @@ export const Date = ({ date, onDateChange }: DateProps) => {
           animationType="slide"
           onRequestClose={() => setShow(false)}
         >
-          <View style={styles.modalContainer}>
-            <View style={styles.pickerContainer}>
-              <View style={styles.pickerHeader}>
-                <TouchableOpacity onPress={() => onDone(newDate)}>
-                  <Text style={styles.doneButton}>Done</Text>
-                </TouchableOpacity>
-              </View>
-              <DateTimePicker
-                testID="dateTimePicker"
-                value={date}
-                mode="date"
-                display="spinner"
-                onChange={(event: DateTimePickerEvent, selectedDate?: Date) => {
-                    if (selectedDate) {
-                        setNewDate(selectedDate);
-                    }
-                }}
-                style={styles.picker}
-              />
+          <TouchableOpacity 
+            style={styles.modalContainer}
+            activeOpacity={1}
+            onPress={() => setShow(false)}
+          >
+            <View>
+              <TouchableOpacity 
+                activeOpacity={1} 
+                onPress={e => e.stopPropagation()}
+              >
+                <View style={styles.pickerContainer}>
+                  <View style={styles.pickerHeader}>
+                    <TouchableOpacity onPress={() => onDone(newDate)}>
+                      <Text style={styles.doneButton}>Done</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <DateTimePicker
+                    testID="dateTimePicker"
+                    value={date}
+                    mode="date"
+                    display="spinner"
+                    onChange={(event: DateTimePickerEvent, selectedDate?: Date) => {
+                        if (selectedDate) {
+                            setNewDate(selectedDate);
+                        }
+                    }}
+                    style={styles.picker}
+                  />
+                </View>
+              </TouchableOpacity>
             </View>
-          </View>
+          </TouchableOpacity>
         </Modal>
       ) : (
         show && (
