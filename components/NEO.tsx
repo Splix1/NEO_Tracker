@@ -3,11 +3,13 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { NEO as NEOType } from '../types';
 import { NEOModal } from './NEOModal';
 
+const asteroidImage = require('../assets/images/asteroid.png');
+
+
 interface NEOProps {
   NEO: NEOType;
 }
 
-const asteroidImage = require('../assets/images/asteroid.png');
 
 export const NEO = ({ NEO }: NEOProps) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 40,
+    height: 40,
   },
 });
