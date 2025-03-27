@@ -6,12 +6,9 @@ React Native application for monitoring NEOs (Near-Earth Objects) based on date 
 - Node.js (version 14 or higher)
 - npm
 - Expo Go installed in mobile device and signed in
-- Expo signed into on computer with the same account as mobile:
-```bash
-npx expo login
-```
+- Expo signed into on computer with the same account as mobile: ``npx expo login``
 - Computer and mobile device are on the same network
-- NASA API key stored locally in .env.local
+- NASA API key stored locally in .env.local: ``NASA_API_KEY=your_api_key``
 
 ## Installation
 
@@ -24,18 +21,18 @@ cd NEO_Tracker
 2. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
 ```
 
 ## Running the app
 
 1. Start the development server:
 ```bash
-npx expo start
+npm run start
 ```
 
 2. Scan the QR code shown in the terminal with your phone's camera if on iOS, or Expo Go's QR scanner if on Android
+
+3. Optionally, test for Android with Android Studio if you don't have an Android device
 
 ### Troubleshooting Connection Issues
 
