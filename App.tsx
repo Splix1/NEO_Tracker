@@ -1,12 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ImageBackground, SafeAreaView, Platform } from 'react-native';
 import { Header } from './components/Header';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { getNEOsByDate } from './services/NASA/NEOWebService';
 const backgroundImage = require('./assets/images/background.jpg');
 
 export default function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
+
+  useEffect(() => {
+    const fetchNEOs = async () => {
+      const startDate = selectedDate.toISOString().split('T')[0];
+      const endDate = selectedDate.toISOString().split('T')[0];
+      const NEOS = await getNEOsByDate(startDate, endDate);
+      console.log(NEOS);
+    }
+    fetchNEOs();
+  }, [selectedDate]);
 
   return (
     <SafeAreaProvider>
