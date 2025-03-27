@@ -14,9 +14,8 @@ export default function App() {
 
   useEffect(() => {
     const fetchNEOs = async () => {
-      const startDate = selectedDate.toISOString().split('T')[0];
-      const endDate = selectedDate.toISOString().split('T')[0];
-      const NEOSResponse = await getNEOsByDate(startDate, endDate);
+      const date = selectedDate.toISOString().split('T')[0];
+      const NEOSResponse = await getNEOsByDate(date);
       const NEOSResult = NEOSResponse.map((NEO: any) => {
 
         const diameter = (NEO.estimated_diameter.feet.estimated_diameter_min + NEO.estimated_diameter.feet.estimated_diameter_max) / 2;
