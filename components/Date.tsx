@@ -8,7 +8,7 @@ interface DateProps {
 }
 
 export const Date = ({ date, onDateChange }: DateProps) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState<boolean>(false);
   const [newDate, setNewDate] = useState<Date>(date);
 
   // When user clicks Done button, set the new date and close the modal

@@ -1,18 +1,30 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { NEO as NEOType } from '../types';
+import { NEOModal } from './NEOModal';
 
 interface NEOProps {
-  name: string;
+  NEO: NEOType;
 }
 
-export const NEO = ({ name }: NEOProps) => {
+export const NEO = ({ NEO }: NEOProps) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.name}>{name}</Text>
-      <Image 
-        source={require('../assets/images/asteroid.png')}
-        style={styles.image}
-        resizeMode="contain"
+      <TouchableOpacity onPress={() => setModalVisible(true)}>
+        <Text style={styles.name}>{NEO.name}</Text>
+        <Image 
+          source={require('../assets/images/asteroid.png')}
+          style={styles.image}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
+
+      <NEOModal
+        NEO={NEO}
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
       />
     </View>
   );

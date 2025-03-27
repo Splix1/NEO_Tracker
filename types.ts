@@ -3,5 +3,6 @@ export type NEO = {
     diameter: number;
     distance: number;
     velocity: number;
+    isHazardous: boolean;
 }
 
