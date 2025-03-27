@@ -7,6 +7,8 @@ interface NEOProps {
   NEO: NEOType;
 }
 
+const asteroidImage = require('../assets/images/asteroid.png');
+
 export const NEO = ({ NEO }: NEOProps) => {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -14,8 +16,8 @@ export const NEO = ({ NEO }: NEOProps) => {
     <View style={styles.container}>
       <TouchableOpacity onPress={() => setModalVisible(true)}>
         <Text style={styles.name}>{NEO.name}</Text>
-        <Image 
-          source={require('../assets/images/asteroid.png')}
+        <Image
+          source={asteroidImage}
           style={styles.image}
           resizeMode="contain"
         />
