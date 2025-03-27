@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { NEO as NEOType } from '../types';
 import { NEO } from './NEO';
 
@@ -11,7 +11,7 @@ export const NEOGrid = ({ NEOs }: NEOGridProps) => {
   const getRandomPosition = () => Math.floor(Math.random() * 3); // 0, 1, or 2
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
       {NEOs.map((neo) => {
         const horizontalPosition = getRandomPosition() === 0 ? 'flex-start' : getRandomPosition() === 1 ? 'center' : 'flex-end';
 
@@ -21,7 +21,7 @@ export const NEOGrid = ({ NEOs }: NEOGridProps) => {
           </View>
         );
       })}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -29,7 +29,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+  },
+  scrollContent: {
     paddingHorizontal: '5%',
+    paddingBottom: 20,
   },
   row: {
     flexDirection: 'row',

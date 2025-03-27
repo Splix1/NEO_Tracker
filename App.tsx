@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: Platform.OS === 'ios' ? 20 : 0,
+    width: '100%',
   },
   text: {
     color: '#fff',
