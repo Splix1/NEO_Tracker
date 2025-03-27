@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { NEO as NEOType } from '../types';
 import { NEOModal } from './NEOModal';
+
+const { width, height } = Dimensions.get('window');
 
 const asteroidImage = require('../assets/images/asteroid.png');
 
@@ -37,16 +39,16 @@ export const NEO = ({ NEO }: NEOProps) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    padding: 16,
+    padding: width * 0.04,
   },
   name: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: width * 0.045,
     fontWeight: 'bold',
-    marginBottom: 12,
+    marginBottom: height * 0.015,
   },
   image: {
-    width: 40,
-    height: 40,
+    width: width * 0.1,
+    height: width * 0.1,
   },
 });

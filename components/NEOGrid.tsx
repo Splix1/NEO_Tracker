@@ -29,13 +29,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    paddingHorizontal: 16,
+    paddingHorizontal: '5%',
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    marginBottom: 20,
+    marginBottom: '5%',
   },
   cell: {
     flex: 1,
