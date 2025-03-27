@@ -4,8 +4,8 @@ import { Header } from './components/Header';
 import { useState, useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { getNEOsByDate } from './services/NASA/NEOWebService';
-import { NEO } from './components/NEO';
 import { NEO as NEOType } from './types';
+import { NEOGrid } from './components/NEOGrid';
 const backgroundImage = require('./assets/images/background.jpg');
 
 export default function App() {
@@ -47,9 +47,7 @@ export default function App() {
             onDateChange={setSelectedDate}
           />
           <View style={styles.content}>
-            {
-              NEOs.length ? <NEO key={NEOs[0].name} NEO={NEOs[0]} /> : null
-            }
+            <NEOGrid NEOs={NEOs} />
             <StatusBar style="light" />
           </View>
         </ImageBackground>
@@ -79,6 +77,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: Platform.OS === 'ios' ? 20 : 0,
+    width: '100%',
   },
   text: {
     color: '#fff',
