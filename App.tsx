@@ -4,17 +4,32 @@ import { Header } from './components/Header';
 import { useState, useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { getNEOsByDate } from './services/NASA/NEOWebService';
+import { NEO } from './components/NEO';
+import { NEO as NEOType } from './types';
 const backgroundImage = require('./assets/images/background.jpg');
 
 export default function App() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [NEOs, setNEOs] = useState<NEOType[]>([]);
 
   useEffect(() => {
     const fetchNEOs = async () => {
       const startDate = selectedDate.toISOString().split('T')[0];
       const endDate = selectedDate.toISOString().split('T')[0];
-      const NEOS = await getNEOsByDate(startDate, endDate);
-      console.log(NEOS);
+      const NEOSResponse = await getNEOsByDate(startDate, endDate);
+      const NEOSResult = NEOSResponse.map((NEO: any) => {
+
+        const diameter = (NEO.estimated_diameter.feet.estimated_diameter_min + NEO.estimated_diameter.feet.estimated_diameter_max) / 2;
+        
+        return {
+          name: NEO.name,
+          diameter: diameter,
+          velocity: NEO.close_approach_data[0].relative_velocity.miles_per_hour,
+          distance: NEO.close_approach_data[0].miss_distance.miles,
+          isHazardous: NEO.is_potentially_hazardous_asteroid
+        }
+      })
+      setNEOs(NEOSResult);
     }
     fetchNEOs();
   }, [selectedDate]);
@@ -32,6 +47,9 @@ export default function App() {
             onDateChange={setSelectedDate}
           />
           <View style={styles.content}>
+            {
+              NEOs.length ? <NEO key={NEOs[0].name} NEO={NEOs[0]} /> : null
+            }
             <StatusBar style="light" />
           </View>
         </ImageBackground>
