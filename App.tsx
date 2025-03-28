@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground, SafeAreaView, Platform } from 'react-native';
+import { StyleSheet, View, ImageBackground, SafeAreaView, Platform } from 'react-native';
 import { Header } from './components/Header';
 import { useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -11,23 +11,23 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <ImageBackground 
-          source={backgroundImage}
-          style={styles.backgroundImage}
-        >
-          <Header 
-            date={selectedDate} 
-            onDateChange={setSelectedDate}
-          />
-          <View style={styles.content}>
-            <NEOGrid selectedDate={selectedDate} />
-            <StatusBar style="light" />
-          </View>
-        </ImageBackground>
-      </View>
-    </SafeAreaView>
+      <StatusBar style="light" />
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <ImageBackground 
+            source={backgroundImage}
+            style={styles.backgroundImage}
+          >
+            <Header 
+              date={selectedDate} 
+              onDateChange={setSelectedDate}
+            />
+            <View style={styles.content}>
+              <NEOGrid selectedDate={selectedDate} />    
+            </View>
+          </ImageBackground>
+        </View>
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }
