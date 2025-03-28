@@ -1,37 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ImageBackground, SafeAreaView, Platform } from 'react-native';
 import { Header } from './components/Header';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { getNEOsByDate } from './services/NASA/NEOWebService';
-import { NEO as NEOType } from './types';
 import { NEOGrid } from './components/NEOGrid';
 const backgroundImage = require('./assets/images/background.jpg');
 
 export default function App() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [NEOs, setNEOs] = useState<NEOType[]>([]);
-
-  useEffect(() => {
-    const fetchNEOs = async () => {
-      const date = selectedDate.toISOString().split('T')[0];
-      const NEOSResponse = await getNEOsByDate(date);
-      const NEOSResult = NEOSResponse.map((NEO: any) => {
-
-        const diameter = (NEO.estimated_diameter.feet.estimated_diameter_min + NEO.estimated_diameter.feet.estimated_diameter_max) / 2;
-        
-        return {
-          name: NEO.name,
-          diameter: diameter,
-          velocity: NEO.close_approach_data[0].relative_velocity.miles_per_hour,
-          distance: NEO.close_approach_data[0].miss_distance.miles,
-          isHazardous: NEO.is_potentially_hazardous_asteroid
-        }
-      })
-      setNEOs(NEOSResult);
-    }
-    fetchNEOs();
-  }, [selectedDate]);
 
   return (
     <SafeAreaProvider>
@@ -46,7 +22,7 @@ export default function App() {
             onDateChange={setSelectedDate}
           />
           <View style={styles.content}>
-            <NEOGrid NEOs={NEOs} />
+            <NEOGrid selectedDate={selectedDate} />
             <StatusBar style="light" />
           </View>
         </ImageBackground>
