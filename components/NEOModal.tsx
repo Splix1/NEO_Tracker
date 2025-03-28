@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, Modal, TouchableOpacity } from 'react-native';
-import { NEO } from '../types';
+import { NEO as NEOType } from '../types';
 
 interface NEOModalProps {
-  NEO: NEO;
+  NEO: NEOType;
   visible: boolean;
   onClose: () => void;
 }

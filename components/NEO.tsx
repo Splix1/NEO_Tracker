@@ -14,7 +14,7 @@ interface NEOProps {
 
 
 export const NEO = ({ NEO }: NEOProps) => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   return (
     <View style={styles.container}>
